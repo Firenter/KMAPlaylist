@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MetaData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Song" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Data" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="MetadataType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Playlist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="PlaylistSong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Playlist" Type="int" />
+    <Property Name="Song" Type="int" />
+  </EntityType>
+  <EntityType Name="Song">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="300" />
+    <Property Name="ExampleURL" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK__MetaData__Song__403A8C7D">
+    <End Role="Song" Type="Self.Song" Multiplicity="0..1" />
+    <End Role="MetaData" Type="Self.MetaData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Song">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MetaData">
+        <PropertyRef Name="Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MetaData__Type__412EB0B6">
+    <End Role="MetadataType" Type="Self.MetadataType" Multiplicity="0..1" />
+    <End Role="MetaData" Type="Self.MetaData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MetadataType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MetaData">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PlaylistS__Playl__3A81B327">
+    <End Role="Playlist" Type="Self.Playlist" Multiplicity="0..1" />
+    <End Role="PlaylistSong" Type="Self.PlaylistSong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Playlist">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlaylistSong">
+        <PropertyRef Name="Playlist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PlaylistSo__Song__3B75D760">
+    <End Role="Song" Type="Self.Song" Multiplicity="0..1" />
+    <End Role="PlaylistSong" Type="Self.PlaylistSong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Song">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlaylistSong">
+        <PropertyRef Name="Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KMAModelStoreContainer">
+    <EntitySet Name="MetaData" EntityType="Self.MetaData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MetadataType" EntityType="Self.MetadataType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Playlist" EntityType="Self.Playlist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaylistSong" EntityType="Self.PlaylistSong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__MetaData__Song__403A8C7D" Association="Self.FK__MetaData__Song__403A8C7D">
+      <End Role="Song" EntitySet="Song" />
+      <End Role="MetaData" EntitySet="MetaData" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MetaData__Type__412EB0B6" Association="Self.FK__MetaData__Type__412EB0B6">
+      <End Role="MetadataType" EntitySet="MetadataType" />
+      <End Role="MetaData" EntitySet="MetaData" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PlaylistS__Playl__3A81B327" Association="Self.FK__PlaylistS__Playl__3A81B327">
+      <End Role="Playlist" EntitySet="Playlist" />
+      <End Role="PlaylistSong" EntitySet="PlaylistSong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PlaylistSo__Song__3B75D760" Association="Self.FK__PlaylistSo__Song__3B75D760">
+      <End Role="Song" EntitySet="Song" />
+      <End Role="PlaylistSong" EntitySet="PlaylistSong" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

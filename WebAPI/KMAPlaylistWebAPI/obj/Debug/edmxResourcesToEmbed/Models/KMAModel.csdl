@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MetaData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Song" Type="Int32" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="Data" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ConnectedSong" Relationship="Self.FK__MetaData__Song__403A8C7D" FromRole="MetaData" ToRole="Song" />
+    <NavigationProperty Name="ConnectedMetadataType" Relationship="Self.FK__MetaData__Type__412EB0B6" FromRole="MetaData" ToRole="MetadataType" />
+  </EntityType>
+  <EntityType Name="MetadataType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ConnectedMetaData" Relationship="Self.FK__MetaData__Type__412EB0B6" FromRole="MetadataType" ToRole="MetaData" />
+  </EntityType>
+  <EntityType Name="Playlist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ConnectedPlaylistSong" Relationship="Self.FK__PlaylistS__Playl__3A81B327" FromRole="Playlist" ToRole="PlaylistSong" />
+  </EntityType>
+  <EntityType Name="PlaylistSong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Playlist" Type="Int32" />
+    <Property Name="Song" Type="Int32" />
+    <NavigationProperty Name="ConnectedPlaylist" Relationship="Self.FK__PlaylistS__Playl__3A81B327" FromRole="PlaylistSong" ToRole="Playlist" />
+    <NavigationProperty Name="ConnectedSong" Relationship="Self.FK__PlaylistSo__Song__3B75D760" FromRole="PlaylistSong" ToRole="Song" />
+  </EntityType>
+  <EntityType Name="Song">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ExampleURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ConnectedMetaData" Relationship="Self.FK__MetaData__Song__403A8C7D" FromRole="Song" ToRole="MetaData" />
+    <NavigationProperty Name="ConnectedPlaylistSong" Relationship="Self.FK__PlaylistSo__Song__3B75D760" FromRole="Song" ToRole="PlaylistSong" />
+  </EntityType>
+  <Association Name="FK__MetaData__Song__403A8C7D">
+    <End Role="Song" Type="Self.Song" Multiplicity="0..1" />
+    <End Role="MetaData" Type="Self.MetaData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Song">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MetaData">
+        <PropertyRef Name="Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MetaData__Type__412EB0B6">
+    <End Role="MetadataType" Type="Self.MetadataType" Multiplicity="0..1" />
+    <End Role="MetaData" Type="Self.MetaData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MetadataType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MetaData">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PlaylistS__Playl__3A81B327">
+    <End Role="Playlist" Type="Self.Playlist" Multiplicity="0..1" />
+    <End Role="PlaylistSong" Type="Self.PlaylistSong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Playlist">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlaylistSong">
+        <PropertyRef Name="Playlist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PlaylistSo__Song__3B75D760">
+    <End Role="Song" Type="Self.Song" Multiplicity="0..1" />
+    <End Role="PlaylistSong" Type="Self.PlaylistSong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Song">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlaylistSong">
+        <PropertyRef Name="Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MetaData" EntityType="Self.MetaData" />
+    <EntitySet Name="MetadataType" EntityType="Self.MetadataType" />
+    <EntitySet Name="Playlist" EntityType="Self.Playlist" />
+    <EntitySet Name="PlaylistSong" EntityType="Self.PlaylistSong" />
+    <EntitySet Name="Song" EntityType="Self.Song" />
+    <AssociationSet Name="FK__MetaData__Song__403A8C7D" Association="Self.FK__MetaData__Song__403A8C7D">
+      <End Role="Song" EntitySet="Song" />
+      <End Role="MetaData" EntitySet="MetaData" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MetaData__Type__412EB0B6" Association="Self.FK__MetaData__Type__412EB0B6">
+      <End Role="MetadataType" EntitySet="MetadataType" />
+      <End Role="MetaData" EntitySet="MetaData" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PlaylistS__Playl__3A81B327" Association="Self.FK__PlaylistS__Playl__3A81B327">
+      <End Role="Playlist" EntitySet="Playlist" />
+      <End Role="PlaylistSong" EntitySet="PlaylistSong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PlaylistSo__Song__3B75D760" Association="Self.FK__PlaylistSo__Song__3B75D760">
+      <End Role="Song" EntitySet="Song" />
+      <End Role="PlaylistSong" EntitySet="PlaylistSong" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
