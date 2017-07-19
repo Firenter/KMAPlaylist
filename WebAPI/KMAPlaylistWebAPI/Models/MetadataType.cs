@@ -17,13 +17,13 @@ namespace KMAPlaylistWebAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MetadataType()
         {
-            this.ConnectedMetaData = new HashSet<MetaData>();
+            this.MetaData = new HashSet<MetaData>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MetaData> ConnectedMetaData { get; set; }
+        public virtual ICollection<MetaData> MetaData { get; set; }
     }
 }

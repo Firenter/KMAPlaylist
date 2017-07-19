@@ -1,0 +1,33 @@
+<h1>
+  Songs
+</h1>
+<div *ngIf="isLoading">
+  Loading...
+</div>
+<div *ngIf="!isLoading">
+  <div>
+    <button (click)="refreshSongs()">Refresh songs</button>
+  </div>
+
+  <div *ngIf="songs.length == 0">
+    No songs to be found...
+  </div>
+  <div *ngIf="songs.length > 0">
+    Songs found: {{songs.length}}
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Example URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of songs">
+          <td>{{song.Title}}</td>
+          <td>{{song.ExampleURL}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

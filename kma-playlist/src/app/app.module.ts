@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { SongListComponent } from './song-list/song-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    SongListComponent
   ],
   imports: [
     BrowserModule,

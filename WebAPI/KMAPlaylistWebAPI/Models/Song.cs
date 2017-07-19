@@ -17,8 +17,8 @@ namespace KMAPlaylistWebAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Song()
         {
-            this.ConnectedMetaData = new HashSet<MetaData>();
-            this.ConnectedPlaylistSong = new HashSet<PlaylistSong>();
+            this.PlaylistSong = new HashSet<PlaylistSong>();
+            this.SongArtist = new HashSet<SongArtist>();
         }
     
         public int ID { get; set; }
@@ -26,8 +26,8 @@ namespace KMAPlaylistWebAPI.Models
         public string ExampleURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MetaData> ConnectedMetaData { get; set; }
+        public virtual ICollection<PlaylistSong> PlaylistSong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlaylistSong> ConnectedPlaylistSong { get; set; }
+        public virtual ICollection<SongArtist> SongArtist { get; set; }
     }
 }

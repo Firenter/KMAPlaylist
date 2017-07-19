@@ -16,7 +16,6 @@ namespace KMAPlaylistWebAPI
             // Web API configuration and services
             var container = new UnityContainer();
             container.RegisterType<ISongRepository, SongRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<IMetadataRepository, MetadataRepository>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes

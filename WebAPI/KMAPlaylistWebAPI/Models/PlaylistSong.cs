@@ -18,7 +18,7 @@ namespace KMAPlaylistWebAPI.Models
         public Nullable<int> Playlist { get; set; }
         public Nullable<int> Song { get; set; }
     
-        public virtual Playlist ConnectedPlaylist { get; set; }
-        public virtual Song ConnectedSong { get; set; }
+        public virtual Playlist Playlist1 { get; set; }
+        public virtual Song Song1 { get; set; }
     }
 }

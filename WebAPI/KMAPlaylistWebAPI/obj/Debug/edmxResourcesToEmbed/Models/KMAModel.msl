@@ -1,47 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="KMAModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="KMAModelStoreContainer" CdmEntityContainer="KMAEntities">
+    <EntitySetMapping Name="Artist">
+      <EntityTypeMapping TypeName="KMAModel.Artist">
+        <MappingFragment StoreEntitySet="Artist">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="MetaData">
       <EntityTypeMapping TypeName="KMAModel.MetaData">
         <MappingFragment StoreEntitySet="MetaData">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Song" ColumnName="Song" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MetadataType">
       <EntityTypeMapping TypeName="KMAModel.MetadataType">
         <MappingFragment StoreEntitySet="MetadataType">
-          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Playlist">
       <EntityTypeMapping TypeName="KMAModel.Playlist">
         <MappingFragment StoreEntitySet="Playlist">
-          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PlaylistSong">
       <EntityTypeMapping TypeName="KMAModel.PlaylistSong">
         <MappingFragment StoreEntitySet="PlaylistSong">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Playlist" ColumnName="Playlist" />
           <ScalarProperty Name="Song" ColumnName="Song" />
+          <ScalarProperty Name="Playlist" ColumnName="Playlist" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Song">
       <EntityTypeMapping TypeName="KMAModel.Song">
         <MappingFragment StoreEntitySet="Song">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ExampleURL" ColumnName="ExampleURL" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SongArtist">
+      <EntityTypeMapping TypeName="KMAModel.SongArtist">
+        <MappingFragment StoreEntitySet="SongArtist">
+          <ScalarProperty Name="Artist" ColumnName="Artist" />
+          <ScalarProperty Name="Song" ColumnName="Song" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

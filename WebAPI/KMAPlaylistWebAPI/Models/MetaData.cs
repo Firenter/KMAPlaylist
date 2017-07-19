@@ -15,11 +15,9 @@ namespace KMAPlaylistWebAPI.Models
     public partial class MetaData
     {
         public int ID { get; set; }
-        public Nullable<int> Song { get; set; }
         public Nullable<int> Type { get; set; }
         public string Data { get; set; }
     
-        public virtual Song ConnectedSong { get; set; }
-        public virtual MetadataType ConnectedMetadataType { get; set; }
+        public virtual MetadataType MetadataType { get; set; }
     }
 }

@@ -25,10 +25,12 @@ namespace KMAPlaylistWebAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Artist> Artist { get; set; }
         public virtual DbSet<MetaData> MetaData { get; set; }
         public virtual DbSet<MetadataType> MetadataType { get; set; }
         public virtual DbSet<Playlist> Playlist { get; set; }
         public virtual DbSet<PlaylistSong> PlaylistSong { get; set; }
         public virtual DbSet<Song> Song { get; set; }
+        public virtual DbSet<SongArtist> SongArtist { get; set; }
     }
 }

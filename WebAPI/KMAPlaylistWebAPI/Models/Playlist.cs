@@ -17,13 +17,13 @@ namespace KMAPlaylistWebAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Playlist()
         {
-            this.ConnectedPlaylistSong = new HashSet<PlaylistSong>();
+            this.PlaylistSong = new HashSet<PlaylistSong>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlaylistSong> ConnectedPlaylistSong { get; set; }
+        public virtual ICollection<PlaylistSong> PlaylistSong { get; set; }
     }
 }

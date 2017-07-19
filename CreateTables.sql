@@ -18,6 +18,17 @@ Create Table dbo.PlaylistSong(
 	Song int References dbo.Song(ID)
 )
 
+Create Table dbo.Artist(
+	ID int identity Primary Key,
+	[Name] varchar(300)
+)
+
+Create Table SongArtist(
+	ID int identity Primary Key,
+	Song int FOREIGN KEY REFERENCES dbo.Song(ID),
+	Artist int FOREIGN KEY REFERENCES dbo.Artist(ID)
+)
+
 Create Table dbo.MetadataType(
 	ID int identity Primary Key,
 	[Name] varchar(300)
@@ -25,8 +36,6 @@ Create Table dbo.MetadataType(
 
 Create Table dbo.MetaData(
 	ID int identity Primary Key,
-	Song int null References dbo.Song(ID),
-	MetaParent int null References dbo.MetaData(ID),
 	[Type] int References dbo.MetadataType(ID),
 	[Data] varchar(300)
 )
